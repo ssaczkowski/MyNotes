@@ -71,8 +71,9 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewTwitter"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageViewInstagram"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:srcCompat="@drawable/ic_facebook" />
 
@@ -80,8 +81,10 @@
         android:id="@+id/imageViewInstagram"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@+id/imageViewFacebook"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageViewFacebook"
         app:srcCompat="@drawable/ic_instagram" />
 
@@ -89,7 +92,8 @@
         android:id="@+id/imageViewTwitter"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageViewFacebook"
         app:layout_constraintTop_toTopOf="@+id/imageViewFacebook"
         app:srcCompat="@drawable/ic_twitter" />
