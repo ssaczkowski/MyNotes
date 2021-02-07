@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyNotes</string>
+    <string name="title_activity_my_notes">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_notes">Notes</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_user_profile">My Profile</string>
 </resources>
