@@ -65,8 +65,11 @@ public class NoteFragment extends Fragment{
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+            if (view.getId() == R.id.listPortrait) {
+               //recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount,
+                        StaggeredGridLayoutManager.VERTICAL));
             } else {
                 DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
                 float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
