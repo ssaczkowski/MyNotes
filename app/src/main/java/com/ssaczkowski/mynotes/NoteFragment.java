@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,11 +68,21 @@ public class NoteFragment extends Fragment{
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(mColumnCount,
+                DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+                float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+                int columns = (int) (dpWidth / 180);
+
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(columns,
                         StaggeredGridLayoutManager.VERTICAL));
             }
 
             mNotesList = new ArrayList<>();
+            mNotesList.add(new Note("Lista de la compra","comprar pan tostado",true,android.R.color.holo_blue_light));
+            mNotesList.add(new Note("Recordar","He aparcado el auto en la calle República Argentina, no olvidarme de pagar el parquímetro",false,android.R.color.holo_green_light));
+            mNotesList.add(new Note("Cumpleaños (fiesta)","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",false,android.R.color.holo_orange_light));
+            mNotesList.add(new Note("Lista de la compra","comprar pan tostado",true,android.R.color.holo_blue_light));
+            mNotesList.add(new Note("Recordar","He aparcado el auto en la calle República Argentina, no olvidarme de pagar el parquímetro",false,android.R.color.holo_green_light));
+            mNotesList.add(new Note("Cumpleaños (fiesta)","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",false,android.R.color.holo_orange_light));
             mNotesList.add(new Note("Lista de la compra","comprar pan tostado",true,android.R.color.holo_blue_light));
             mNotesList.add(new Note("Recordar","He aparcado el auto en la calle República Argentina, no olvidarme de pagar el parquímetro",false,android.R.color.holo_green_light));
             mNotesList.add(new Note("Cumpleaños (fiesta)","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",false,android.R.color.holo_orange_light));
