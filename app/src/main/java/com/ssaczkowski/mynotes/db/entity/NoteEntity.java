@@ -1,17 +1,27 @@
-package com.ssaczkowski.mynotes;
+package com.ssaczkowski.mynotes.db.entity;
 
-public class Note {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-    private String title;
-    private String content;
-    private boolean isFavorite;
-    private int color;
+@Entity(tableName = "notes")
+public class NoteEntity {
 
-    public Note(String title, String content, boolean isFavorite, int color) {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+    public String title;
+    public String content;
+    public boolean isFavorite;
+    public int color;
+
+    public NoteEntity(String title, String content, boolean isFavorite, int color) {
         this.title = title;
         this.content = content;
         this.isFavorite = isFavorite;
         this.color = color;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {

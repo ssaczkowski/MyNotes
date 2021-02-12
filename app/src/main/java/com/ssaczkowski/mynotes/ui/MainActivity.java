@@ -1,4 +1,4 @@
-package com.ssaczkowski.mynotes;
+package com.ssaczkowski.mynotes.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+
+import com.ssaczkowski.mynotes.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MyNotesActivity.class);
+                Intent i = new Intent(MainActivity.this, DashboardActivity.class);
                 startActivity(i);
             }
         });

@@ -1,24 +1,33 @@
-package com.ssaczkowski.mynotes;
+package com.ssaczkowski.mynotes.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ssaczkowski.mynotes.viewmodel.NewNoteDialogViewModel;
+import com.ssaczkowski.mynotes.R;
+import com.ssaczkowski.mynotes.db.entity.NoteEntity;
+
 import java.util.List;
 
 
 public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Note> mValues;
-    private final NoteInteractionListener mListener;
+    private List<NoteEntity> mValues;
+    private Context ctx;
+    private NewNoteDialogViewModel mViewModel;
 
-    public MyNoteRecyclerViewAdapter(List<Note> items,NoteInteractionListener listener) {
+    public MyNoteRecyclerViewAdapter(List<NoteEntity> items, Context ctx) {
         mValues = items;
-        mListener = listener;
+        this.ctx = ctx;
+        mViewModel = ViewModelProviders.of((AppCompatActivity) ctx).get(NewNoteDialogViewModel.class);
     }
 
     @Override
@@ -42,9 +51,14 @@ public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecycl
         holder.mFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(null!= mListener){
-                    mListener.favoriteNoteClick(holder.mItem);
+                if(holder.mItem.isFavorite()) {
+                    holder.mItem.setFavorite(false);
+                    holder.mFavorite.setImageResource(R.drawable.ic_baseline_star_border_24);
+                }else {
+                    holder.mItem.setFavorite(true);
+                    holder.mFavorite.setImageResource(R.drawable.ic_baseline_star_24);
                 }
+                mViewModel.updateNote(holder.mItem);
             }
         });
     }
@@ -59,7 +73,7 @@ public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecycl
         public final TextView mTitle;
         public final TextView mContent;
         public final ImageView mFavorite;
-        public Note mItem;
+        public NoteEntity mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -73,5 +87,10 @@ public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecycl
         public String toString() {
             return super.toString() + " '" + mTitle.getText() + "'";
         }
+    }
+
+    public void updateNotes(List<NoteEntity> noteEntities){
+        this.mValues =noteEntities;
+        notifyDataSetChanged();
     }
 }
