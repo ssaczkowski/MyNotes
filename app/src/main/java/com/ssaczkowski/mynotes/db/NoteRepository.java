@@ -5,6 +5,8 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 
 import com.ssaczkowski.mynotes.db.NoteRoomDataBase;
 import com.ssaczkowski.mynotes.db.dao.NoteDao;
@@ -31,6 +33,7 @@ public class NoteRepository {
     public LiveData<List<NoteEntity>> getAllFavoriteNotes() {
         return allFavoriteNotes;
     }
+
 
     public void insert(NoteEntity note){
         new insertAsyncTask(noteDao).execute(note);
